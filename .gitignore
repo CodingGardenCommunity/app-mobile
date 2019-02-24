@@ -62,3 +62,6 @@ typings/
 
 # npm lock
 package-lock.json
+
+# expo folder
+.expo/
