@@ -8,9 +8,9 @@ module.exports = {
     'jest': true,
   },
   'rules': {
-    'no-use-before-define': 1,
+    'no-use-before-define': 'error',
     'react/jsx-filename-extension': 'off',
-    'react/prop-types': 'on',
+    'react/prop-types': 'error',
     'comma-dangle': 'off'
   },
   'globals': {
