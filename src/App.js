@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { AppLoading, Font } from 'expo';
+import { registerRootComponent, AppLoading, Font } from 'expo';
 import { StatusBar, StyleSheet } from 'react-native';
 import { Container, Text, View } from 'native-base';
-import { Navbar, Pages } from './src/components/shared/navbar';
-import Home from './src/components/home/home';
-import Contributors from './src/components/contributors/contributors';
-import FAQ from './src/components/faq/faq';
+import { Navbar, Pages } from './components/shared/navbar';
+import Home from './components/home/home';
+import Contributors from './components/contributors/contributors';
+import FAQ from './components/faq/faq';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class App extends Component {
+export class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -83,3 +83,5 @@ export default class App extends Component {
     this.setState({ page: selectedPage });
   }
 }
+
+export default registerRootComponent(App);
