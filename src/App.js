@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { registerRootComponent, AppLoading, Font } from 'expo';
 import { StatusBar, StyleSheet } from 'react-native';
 import { Container, Text, View } from 'native-base';
-import { Navbar, Pages } from './components/shared/navbar';
-import Home from './components/home/home';
-import Contributors from './components/contributors/contributors';
-import FAQ from './components/faq/faq';
+import Navbar from './components/shared/navbar';
+import Home from './components/home';
+import Contributors from './components/contributors';
+import FAQ from './components/faq';
+import Pages from './constants/pages';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +18,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5E5E5',
   },
 });
+
+function RenderPage(page) {
+  switch (page) {
+    case Pages.HOME:
+      return <Home />;
+    case Pages.CONTRIBUTORS:
+      return <Contributors />;
+    case Pages.FAQ:
+      return <FAQ />;
+    default:
+      return (
+        <Text>
+          Error in RenderPage in App.js - An invalid page was attempting to be loaded
+          </Text>
+      );
+  }
+}
 
 export class App extends Component {
   constructor() {
@@ -41,7 +59,9 @@ export class App extends Component {
   }
 
   render() {
-    if (!this.state.fontsLoaded) {
+    const { fontsLoaded, page } = this.state;
+
+    if (!fontsLoaded) {
       return <AppLoading />;
     }
     return (
@@ -53,30 +73,13 @@ export class App extends Component {
         ) : (null)}
 
         <View style={styles.content}>
-          {this.RenderPage()}
+          {RenderPage(page)}
         </View>
 
-        <Navbar callback={this.NavbarCallback} />
+        <Navbar onButtonPress={this.NavbarCallback} currentPage={page} />
 
       </Container >
     );
-  }
-
-  RenderPage() {
-    switch (this.state.page) {
-      case Pages.HOME:
-        return <Home />;
-      case Pages.CONTRIBUTORS:
-        return <Contributors />;
-      case Pages.FAQ:
-        return <FAQ />;
-      default:
-        return (
-          <Text>
-            Error in RenderPage in App.js - An invalid page was attempting to be loaded
-          </Text>
-        );
-    }
   }
 
   NavbarCallback(selectedPage) {
