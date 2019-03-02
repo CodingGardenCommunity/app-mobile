@@ -10,7 +10,8 @@
     "@expo/vector-icons": "^9.0.0",
     "expo": "^32.0.0",
     "native-base": "^2.10.0",
-    "react": "16.5.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz"
   },
   "devDependencies": {
@@ -20,7 +21,8 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "schedule": "0.4.0"
   },
   "private": true
 }

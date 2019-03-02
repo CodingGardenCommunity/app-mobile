@@ -63,7 +63,8 @@ typings/
 # npm lock
 package-lock.json
 
-.expo
+# expo folder
+.expo/
 
 # OSX
 #
