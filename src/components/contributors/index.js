@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Contributors() {
-  return (
-    <View style={styles.content}>
-      <Text>Contributors Page</Text>
-    </View>
-  );
-}
+const Contributors = () => (
+  <View style={styles.content}>
+    <Text>Contributors Page</Text>
+  </View>
+);
+
+export default Contributors;

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Navbar(props) {
+const Navbar = (props) => {
   const { onButtonPress, currentPage } = props;
   return (
     <Footer style={styles.footer}>
@@ -54,3 +54,5 @@ Navbar.propTypes = {
   onButtonPress: PropTypes.func.isRequired,
   currentPage: PropTypes.oneOf(Object.values(Pages)).isRequired,
 };
+
+export default Navbar;

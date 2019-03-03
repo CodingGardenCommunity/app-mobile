@@ -26,7 +26,7 @@ function handleButtonPress(selectedPage, onButtonPress) {
   onButtonPress(selectedPage);
 }
 
-export default function NavbarButton(props) {
+const NavbarButton = (props) => {
   const {
     onButtonPress,
     iconImage,
@@ -58,3 +58,5 @@ NavbarButton.propTypes = {
   currentPage: PropTypes.oneOf(Object.values(Pages)).isRequired,
   text: PropTypes.string.isRequired
 };
+
+export default NavbarButton;
