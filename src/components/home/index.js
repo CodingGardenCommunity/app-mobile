@@ -11,11 +11,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Home() {
-  return (
+const Home = () => {
+  (
     <View style={styles.content}>
       <Text>Home Page</Text>
     </View>
   );
 }
-Home.displayName = 'Home';
+
+export default Home;
