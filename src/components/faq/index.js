@@ -40,14 +40,14 @@ const dataArray = [{
   content: 'This is a feature of Mac OS X. Press CTRL+CMD+Space to bring up the emoji menu! On Windows 10 you can use CTRL+Period  '
 }];
 
-export default function FAQ() {
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Container>
-        <Content padder>
-          <Accordion dataArray={dataArray} expanded={0}/>
-        </Content>
-      </Container>
-    </SafeAreaView>
-  );
-}
+const FAQ = () => (
+  <SafeAreaView style={{ flex: 1 }}>
+    <Container>
+      <Content padder>
+        <Accordion dataArray={dataArray} expanded={0}/>
+      </Content>
+    </Container>
+  </SafeAreaView>
+);
+
+export default FAQ;
