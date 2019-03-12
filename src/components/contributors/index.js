@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { View, Text } from 'native-base';
 import PageHeader from './pageHeader';
+import ListContainer from './listContainer';
 
 const styles = StyleSheet.create({
   content: {
@@ -13,44 +14,54 @@ const styles = StyleSheet.create({
 });
 
 export default class ContributorsView extends Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
+  constructor() {
+    super();
     this.state = {
-      contributorsData: '',
+      dataLoaded: true,
+      isBloatedEcosystem: true
     };
   }
 
-  componentDidMount() {
-    this.getData();
-  }
 
-  getData() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json)
-      .then((data) => {
-        this.setState({
-          contributorsData: data
-        });
-      });
-  }
+  // getData() {
+  //   fetch('https://jsonplaceholder.typicode.com/users')
+  //     .then(response => response.json)
+  //     .then((data) => {
+  //       this.setState({
+  //         dataLoaded: true,
+  //         contributorsData: JSON.parse(data)
+  //       });
+  //       console.log(this.state)
+  //     });
+  // }
 
-  asyncGetData() {
-    fetch('https://github.com')
-      .then(response => response.json)
-      .then((data) => {
-        this.setState({
-          contributorsData: data
-        });
-      });
-  }
+  // asyncGetData() {
+  //   fetch('https://github.com')
+  //     .then(response => response.json)
+  //     .then((data) => {
+  //       this.setState({
+  //         contributorsData: JSON.parse(data)
+  //       });
+  //       console.log(this.state);
+  //     });
+  // }
 
   render() {
+    if (this.state.dataLoaded) {
+      return (
+        <View>
+          <PageHeader />
+          <View style={styles.content}>
+            <ListContainer />
+          </View>
+        </View>
+      );
+    }
     return (
       <View>
         <PageHeader />
         <View style={styles.content}>
-          <Text>{JSON.stringify(this.state.contributorsData[0].name)}</Text>
+          <Text>Data goes here</Text>
         </View>
       </View>
     );
