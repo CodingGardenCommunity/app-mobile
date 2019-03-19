@@ -49,7 +49,7 @@ const NavbarButton = (props) => {
       </View>
     </TouchableHighlight >
   );
-}
+};
 
 NavbarButton.propTypes = {
   onButtonPress: PropTypes.func.isRequired,

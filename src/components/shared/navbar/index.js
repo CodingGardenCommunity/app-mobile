@@ -48,7 +48,7 @@ const Navbar = (props) => {
 
     </Footer>
   );
-}
+};
 
 Navbar.propTypes = {
   onButtonPress: PropTypes.func.isRequired,
