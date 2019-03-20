@@ -39,21 +39,7 @@ export default class ListContainer extends Component {
     super();
 
     this.state = {
-      contributors: [
-        {
-          id: '0',
-          name: 'Sean RabbitWerks',
-          avatar: 'https://yt3.ggpht.com/-hRIruU8PArM/AAAAAAAAAAI/AAAAAAAAAAA/6YE3uj59cgA/s88-c-k-no-mo-rj-c0xffffff/photo.jpg',
-          developmentTeams: ['Planning', 'Frontend', 'Backend', 'Design', 'DevOps', 'Testing']
-        },
-        {
-          id: '1',
-          name: 'Joshua Ferris',
-          avatar: 'https://avatars3.githubusercontent.com/u/22730186?s=460&v=4',
-          developmentTeams: ['Planning', 'Frontend', 'Backend', 'Design']
-        },
-      ],
-      githubData: [],
+      contributorsData: [],
     };
   }
 
@@ -62,7 +48,7 @@ export default class ListContainer extends Component {
       .then(res => res.json())
       .then((data) => {
         this.setState({
-          githubData: data,
+          contributorsData: data,
         }, () => {
           console.log('data fetched');
           console.log(this.state.githubData);
@@ -72,11 +58,11 @@ export default class ListContainer extends Component {
   }
 
   render() {
-    if (this.state.githubData) {
+    if (this.state.contributorsData) {
       return (
         <FlatList
           style={style.flex}
-          data={this.state.githubData}
+          data={this.state.contributorsData}
           renderItem={({ item }) => {
             console.log(item);
             const {
@@ -91,7 +77,10 @@ export default class ListContainer extends Component {
             return (
             <ListItem style={style.listItem} avatar>
               <Left>
-                <Thumbnail source={{ uri: image }} />
+                <Thumbnail
+                  source={{ uri: image }}
+                  style={{ width: 80, height: 80, borderRadius: 40 }}
+                />
               </Left>
               <Body>
                 <Text style={style.name}>
@@ -104,7 +93,6 @@ export default class ListContainer extends Component {
                       teamIds.map((team, index) => <View
                       key={index}
                       style={style.teamIcon}>
-                        { console.log(team) }
                       </View>)
                     }
                   </View>
