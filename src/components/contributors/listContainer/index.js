@@ -13,6 +13,8 @@ import {
   Thumbnail
 } from 'native-base';
 
+import ContributorName from './listItem';
+
 const style = StyleSheet.create({
   flex: {
     display: 'flex',
@@ -24,9 +26,6 @@ const style = StyleSheet.create({
     paddingLeft: '5%',
     paddingBottom: 10
   },
-  name: {
-    fontSize: 20
-  },
   teamIcon: {
     width: 40,
     height: 40,
@@ -36,7 +35,7 @@ const style = StyleSheet.create({
     borderWidth: 1
   },
   active: {
-    backgroundColor: '#056056'
+    
   }
 });
 
@@ -58,7 +57,7 @@ export default class ListContainer extends Component {
           dataLoaded: true
         }, () => {
           console.log('data fetched');
-          console.log(this.state.githubData);
+          console.log(this.state.contributorData);
         });
       })
       .catch(error => console.log(error));
@@ -88,9 +87,9 @@ export default class ListContainer extends Component {
                 />
               </Left>
               <Body>
-                <Text style={style.name}>
-                  {name}
-                </Text>
+                <ContributorName
+                  name={name}
+                />
                 <View style={{ backgroundColor: '#ccc', height: 60 }}>
                   <Text>Development Teams</Text>
                   <View style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>

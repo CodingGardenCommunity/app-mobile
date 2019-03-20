@@ -40,7 +40,7 @@ export class App extends Component {
   constructor() {
     super();
     this.state = {
-      page: Pages.HOME,
+      page: Pages.CONTRIBUTORS,
       fontsLoaded: false,
     };
     this.NavbarCallback = this.NavbarCallback.bind(this);
