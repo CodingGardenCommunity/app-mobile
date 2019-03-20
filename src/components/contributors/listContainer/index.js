@@ -20,6 +20,9 @@ const style = StyleSheet.create({
   },
   listItem: {
     height: 100,
+    marginLeft: 0,
+    paddingLeft: '5%',
+    paddingBottom: 10
   },
   name: {
     fontSize: 20
@@ -31,15 +34,18 @@ const style = StyleSheet.create({
     borderRadius: 20,
     borderColor: '#212121',
     borderWidth: 1
+  },
+  active: {
+    backgroundColor: '#056056'
   }
 });
 
 export default class ListContainer extends Component {
   constructor() {
     super();
-
     this.state = {
       contributorsData: [],
+      dataLoaded: false,
     };
   }
 
@@ -49,6 +55,7 @@ export default class ListContainer extends Component {
       .then((data) => {
         this.setState({
           contributorsData: data,
+          dataLoaded: true
         }, () => {
           console.log('data fetched');
           console.log(this.state.githubData);
@@ -58,7 +65,7 @@ export default class ListContainer extends Component {
   }
 
   render() {
-    if (this.state.contributorsData) {
+    if (this.state.dataLoaded) {
       return (
         <FlatList
           style={style.flex}
@@ -68,14 +75,12 @@ export default class ListContainer extends Component {
             const {
               name,
               teamIds,
-              joined,
-              github,
               image,
               active
             } = item;
 
             return (
-            <ListItem style={style.listItem} avatar>
+            <ListItem style={[style.listItem, active ? style.active : style.inactive]} avatar>
               <Left>
                 <Thumbnail
                   source={{ uri: image }}
@@ -92,7 +97,8 @@ export default class ListContainer extends Component {
                     {
                       teamIds.map((team, index) => <View
                       key={index}
-                      style={style.teamIcon}>
+                      style={[style.teamIcon, { alignItems: 'center', justifyContent: 'center' }]}>
+                        <Text>{ team }</Text>
                       </View>)
                     }
                   </View>
@@ -106,6 +112,6 @@ export default class ListContainer extends Component {
         />
       );
     }
-    return <Text>No data found</Text>;
+    return <Text style={{ alignSelf: 'center', marginTop: 50 }}>Loading...</Text>;
   }
 }
