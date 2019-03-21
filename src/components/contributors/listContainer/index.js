@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  View,
   Text,
   FlatList
 } from 'react-native';
@@ -13,29 +12,29 @@ import {
   Thumbnail
 } from 'native-base';
 
-import ContributorName from './listItem';
+import ContributorName from './listItem/contribName';
+import ContributorDevTeam from './listItem/contribDevTeam';
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   flex: {
     display: 'flex',
     flex: 1,
   },
   listItem: {
-    height: 100,
+    height: 120,
     marginLeft: 0,
-    paddingLeft: '5%',
-    paddingBottom: 10
+    paddingVertical: 0,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderColor: '#000'
   },
-  teamIcon: {
-    width: 40,
-    height: 40,
-    marginRight: 10,
-    borderRadius: 20,
-    borderColor: '#212121',
-    borderWidth: 1
+  thumbnail: {
+    width: 90,
+    height: 90,
+    borderRadius: 50
   },
   active: {
-    
+
   }
 });
 
@@ -52,12 +51,10 @@ export default class ListContainer extends Component {
     fetch('https://app-backend-iel278lgr.now.sh/contributors')
       .then(res => res.json())
       .then((data) => {
+        data.sort((firstItem, secondItem) => (firstItem.joined < secondItem.joined ? -1 : 1));
         this.setState({
           contributorsData: data,
           dataLoaded: true
-        }, () => {
-          console.log('data fetched');
-          console.log(this.state.contributorData);
         });
       })
       .catch(error => console.log(error));
@@ -67,7 +64,7 @@ export default class ListContainer extends Component {
     if (this.state.dataLoaded) {
       return (
         <FlatList
-          style={style.flex}
+          style={styles.flex}
           data={this.state.contributorsData}
           renderItem={({ item }) => {
             console.log(item);
@@ -79,29 +76,16 @@ export default class ListContainer extends Component {
             } = item;
 
             return (
-            <ListItem style={[style.listItem, active ? style.active : style.inactive]} avatar>
+            <ListItem style={[styles.listItem, active ? styles.active : styles.inactive]} avatar>
               <Left>
                 <Thumbnail
                   source={{ uri: image }}
-                  style={{ width: 80, height: 80, borderRadius: 40 }}
+                  style={[styles.thumbnail, { paddingVertical: 0 }]}
                 />
               </Left>
-              <Body>
-                <ContributorName
-                  name={name}
-                />
-                <View style={{ backgroundColor: '#ccc', height: 60 }}>
-                  <Text>Development Teams</Text>
-                  <View style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
-                    {
-                      teamIds.map((team, index) => <View
-                      key={index}
-                      style={[style.teamIcon, { alignItems: 'center', justifyContent: 'center' }]}>
-                        <Text>{ team }</Text>
-                      </View>)
-                    }
-                  </View>
-                </View>
+              <Body style={{ paddingVertical: 0 }}>
+                <ContributorName name={name} />
+                <ContributorDevTeam teamIds={teamIds} />
               </Body>
             </ListItem>
             );
