@@ -31,7 +31,7 @@ function RenderPage(page) {
       return (
         <Text>
           Error in RenderPage in App.js - An invalid page was attempting to be loaded
-          </Text>
+        </Text>
       );
   }
 }
