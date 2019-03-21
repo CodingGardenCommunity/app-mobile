@@ -47,7 +47,7 @@ const NavbarButton = (props) => {
         </Text>
 
       </View>
-    </TouchableHighlight >
+    </TouchableHighlight>
   );
 };
 
