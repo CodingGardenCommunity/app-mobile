@@ -8,12 +8,10 @@ const styles = StyleSheet.create({
   },
 });
 
-function contributorName(props) {
+export default function contributorName(props) {
   return <Text style={styles.name}>{ props.name }</Text>;
 }
 
 contributorName.propTypes = {
   name: PropTypes.string
 };
-
-export default contributorName;

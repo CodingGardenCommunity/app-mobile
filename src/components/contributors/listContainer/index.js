@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  View,
   Text,
   FlatList
 } from 'react-native';
@@ -12,8 +13,9 @@ import {
   Thumbnail
 } from 'native-base';
 
-import ContributorName from './listItem/contribName';
+import ContributorHeader from './listItem/contribHeader';
 import ContributorDevTeam from './listItem/contribDevTeam';
+
 
 const styles = StyleSheet.create({
   flex: {
@@ -21,20 +23,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listItem: {
-    height: 120,
+    height: 130,
     marginLeft: 0,
     paddingVertical: 0,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderColor: '#000'
+    paddingHorizontal: 10,
   },
   thumbnail: {
-    width: 90,
-    height: 90,
+    width: 100,
+    height: 100,
     borderRadius: 50
   },
   active: {
 
+  },
+  inactive: {
+    backgroundColor: '#ce3ecc',
   }
 });
 
@@ -60,6 +63,8 @@ export default class ListContainer extends Component {
       .catch(error => console.log(error));
   }
 
+  renderSeparator = () => <View style={{ height: 1, backgroundColor: '#121212', }}></View>;
+
   render() {
     if (this.state.dataLoaded) {
       return (
@@ -84,7 +89,8 @@ export default class ListContainer extends Component {
                 />
               </Left>
               <Body style={{ paddingVertical: 0 }}>
-                <ContributorName name={name} />
+
+                <ContributorHeader name={name} link={ 'null' } />
                 <ContributorDevTeam teamIds={teamIds} />
               </Body>
             </ListItem>
@@ -92,6 +98,7 @@ export default class ListContainer extends Component {
           }
         }
           keyExtractor={item => item.name}
+          ItemSeparatorComponent={this.renderSeparator}
         />
       );
     }
