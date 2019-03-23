@@ -82,22 +82,23 @@ export default class ListContainer extends Component {
           renderItem={({ item }) => {
             const {
               name,
+              github,
               teamIds,
               image,
-              active
+              active,
             } = item;
 
             return (
             <ListItem style={[styles.listItem, active ? styles.active : styles.inactive]} avatar>
               <Left>
                 <Thumbnail
-                  source={{ uri: image }}
+                  source={{ uri: image || null }}
                   style={[styles.thumbnail, { paddingVertical: 0 }]}
                 />
               </Left>
               <Body style={{ paddingVertical: 0 }}>
 
-                <ContributorHeader name={name} link={ 'null' } />
+                <ContributorHeader name={name} github={ github } />
                 <ContributorDevTeam teamIds={teamIds} />
               </Body>
             </ListItem>
