@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import { StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create({
