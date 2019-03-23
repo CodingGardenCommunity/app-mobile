@@ -16,18 +16,18 @@ const styles = StyleSheet.create({
 });
 
 export default function contributorHeader(props) {
-  const { name, link } = props;
+  const { name, github } = props;
 
   const { headerOuter } = styles;
   return (
     <View style={ headerOuter }>
       <ContributorName name={ name } />
-      <UserProfileImage link={ link } />
+      <UserProfileImage github={ github } />
     </View>
   );
 }
 
 contributorHeader.propTypes = {
   name: PropTypes.string,
-  link: PropTypes.string,
+  github: PropTypes.string,
 };

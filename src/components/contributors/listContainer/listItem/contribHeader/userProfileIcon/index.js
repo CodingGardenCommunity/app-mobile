@@ -13,16 +13,17 @@ const styles = StyleSheet.create({
 });
 
 export default function userProfileIcon(props) {
-  const { uri } = props;
+  const { github } = props;
+  const githubProfileURL = `https://www.github.com/${github}`;
   return (
     <Icon
       style={styles.profileIcon}
       name="person"
-      uri={uri}
+      uri={ githubProfileURL }
     />
   );
 }
 
 userProfileIcon.propTypes = {
-  uri: PropTypes.string,
+  github: PropTypes.string,
 };
