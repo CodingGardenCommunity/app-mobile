@@ -4,7 +4,7 @@ import { StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create({
   name: {
-    fontSize: 20,
+    fontSize: 24,
     flex: 1
   },
 });

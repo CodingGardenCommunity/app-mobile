@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import ContributorName from './contribName';
-import UserProfileImage from './userProfileIcon';
+import UserProfileIcon from './userProfileIcon';
 
 const styles = StyleSheet.create({
   headerOuter: {
@@ -22,7 +22,7 @@ export default function contributorHeader(props) {
   return (
     <View style={ headerOuter }>
       <ContributorName name={ name } />
-      <UserProfileImage github={ github } />
+      <UserProfileIcon github={ github } />
     </View>
   );
 }

@@ -33,11 +33,8 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50
   },
-  active: {
-
-  },
   inactive: {
-    opacity: 50,
+    opacity: 20,
   }
 });
 
@@ -85,11 +82,11 @@ export default class ListContainer extends Component {
               github,
               teamIds,
               image,
-              active,
+              // active,
             } = item;
 
             return (
-            <ListItem style={[styles.listItem, active ? styles.active : styles.inactive]} avatar>
+            <ListItem style={styles.listItem} avatar>
               <Left>
                 <Thumbnail
                   source={{ uri: image || null }}
@@ -97,7 +94,6 @@ export default class ListContainer extends Component {
                 />
               </Left>
               <Body style={{ paddingVertical: 0 }}>
-
                 <ContributorHeader name={name} github={ github } />
                 <ContributorDevTeam teamIds={teamIds} />
               </Body>
