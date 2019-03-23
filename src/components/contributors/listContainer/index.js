@@ -37,9 +37,17 @@ const styles = StyleSheet.create({
 
   },
   inactive: {
-    backgroundColor: '#ce3ecc',
+    opacity: 50,
   }
 });
+
+const sortData = (dataArray) => {
+  // sorts the array by join date
+  dataArray.sort((firstItem, secondItem) => (firstItem.joined < secondItem.joined ? -1 : 1))
+    // then sorts array by active status
+    .sort((firstItem, secondItem) => (firstItem.active > secondItem.active ? -1 : 1));
+  return dataArray;
+};
 
 export default class ListContainer extends Component {
   constructor() {
@@ -51,10 +59,10 @@ export default class ListContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('https://app-backend-iel278lgr.now.sh/contributors')
+    fetch('https://raw.githubusercontent.com/CodingGardenCommunity/contributors/mock-user-data/contributors.json')
       .then(res => res.json())
       .then((data) => {
-        data.sort((firstItem, secondItem) => (firstItem.joined < secondItem.joined ? -1 : 1));
+        sortData(data);
         this.setState({
           contributorsData: data,
           dataLoaded: true
@@ -72,7 +80,6 @@ export default class ListContainer extends Component {
           style={styles.flex}
           data={this.state.contributorsData}
           renderItem={({ item }) => {
-            console.log(item);
             const {
               name,
               teamIds,

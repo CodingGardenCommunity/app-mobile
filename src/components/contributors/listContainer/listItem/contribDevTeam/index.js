@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   teamIcon: {
     width: 30,
     height: 40,
-    marginRight: 15,
+    marginRight: 9,
     borderRadius: 20,
     borderColor: '#212121',
     borderWidth: 1
