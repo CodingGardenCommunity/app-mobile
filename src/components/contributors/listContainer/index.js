@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     borderRadius: 50
   },
   inactive: {
-    opacity: 20,
+    opacity: 0.4,
   }
 });
 
@@ -76,21 +76,27 @@ export default class ListContainer extends Component {
         <FlatList
           style={styles.flex}
           data={this.state.contributorsData}
-          renderItem={({ item }) => {
+          renderItem={({ item, index }) => {
             const {
               name,
               github,
               teamIds,
               image,
-              // active,
+              active,
             } = item;
 
             return (
-            <ListItem style={styles.listItem} avatar>
+            <ListItem
+              style={[
+                // sets every other listItem as a darker grey
+                styles.listItem, !(index % 2)
+                  ? { backgroundColor: '' }
+                  : { backgroundColor: '#cccccc' }]}
+              avatar>
               <Left>
                 <Thumbnail
                   source={{ uri: image || null }}
-                  style={[styles.thumbnail, { paddingVertical: 0 }]}
+                  style={[styles.thumbnail, active ? {} : styles.inactive, { paddingVertical: 0 }]}
                 />
               </Left>
               <Body style={{ paddingVertical: 0 }}>
@@ -101,7 +107,7 @@ export default class ListContainer extends Component {
             );
           }
         }
-          keyExtractor={item => item.name}
+          keyExtractor={item => item.name + this.index}
           ItemSeparatorComponent={this.renderSeparator}
         />
       );
