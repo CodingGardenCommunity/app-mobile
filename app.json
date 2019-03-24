@@ -25,6 +25,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "entryPoint": "./src/App.js"
+    "entryPoint": "./src/App.js",
+    "description": ""
   }
 }
