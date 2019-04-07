@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import DevTeamIcon from '../devTeamIcon';
 
 const styles = StyleSheet.create({
-  devTeamList: {
+  devTeamsList: {
     display: 'flex',
     flexDirection: 'row',
     flex: 1,
@@ -13,18 +13,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function devTeamList(props) {
-  const { teamIds } = props;
+export default function devTeamsList(props) {
+  const { devTeams } = props;
 
   return (
-    <View style={styles.devTeamList}>
+    <View style={styles.devTeamsList}>
     {
-      teamIds.map((team, index) => <DevTeamIcon key={index} team={team} />)
+      devTeams.map((team, index) => <DevTeamIcon key={index} team={team} />)
     }
   </View>
   );
 }
 
-devTeamList.propTypes = {
-  teamIds: propTypes.array,
+devTeamsList.propTypes = {
+  devTeams: propTypes.array,
 };

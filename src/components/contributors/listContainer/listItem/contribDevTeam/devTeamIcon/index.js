@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import propTypes from 'prop-types';
 
@@ -13,24 +13,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class DevTeamIcon extends Component {
-  constructor(props) {
-    super();
-    this.props = props;
-  }
+export default function DevTeamIcon(props) {
+  const { id } = props.team;
 
-  render() {
-    const { team } = this.props;
-    return (
-      <View
-        style={[styles.teamIcon, { alignItems: 'center', justifyContent: 'center' }]}>
-          <Text>{ team }</Text>
-      </View>
-    );
-  }
+  return (
+    <View
+      style={[styles.teamIcon, { alignItems: 'center', justifyContent: 'center' }]}>
+        <Text>{ id }</Text>
+    </View>
+  );
 }
 
 DevTeamIcon.propTypes = {
-  team: propTypes.number,
-  index: propTypes.number,
+  team: propTypes.object,
+  teamId: propTypes.string,
 };

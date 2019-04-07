@@ -14,7 +14,7 @@ import {
 } from 'native-base';
 
 import ContributorHeader from './listItem/contribHeader';
-import ContributorDevTeam from './listItem/contribDevTeam';
+import ContributorDevTeams from './listItem/contribDevTeam';
 
 
 const styles = StyleSheet.create({
@@ -33,18 +33,18 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50
   },
-  inactive: {
+  inactiveAvatar: {
     opacity: 0.4,
   }
 });
 
-const sortData = (dataArray) => {
-  // sorts the array by join date
-  dataArray.sort((firstItem, secondItem) => (firstItem.joined < secondItem.joined ? -1 : 1))
-    // then sorts array by active status
-    .sort((firstItem, secondItem) => (firstItem.active > secondItem.active ? -1 : 1));
-  return dataArray;
-};
+// const sortData = (dataArray) => {
+//   // sorts the array by join date
+//   dataArray.sort((firstItem, secondItem) => (firstItem.joined < secondItem.joined ? -1 : 1))
+//     // then sorts array by active status
+//     .sort((firstItem, secondItem) => (firstItem.active > secondItem.active ? -1 : 1));
+//   return dataArray;
+// };
 
 export default class ListContainer extends Component {
   constructor() {
@@ -56,12 +56,12 @@ export default class ListContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('https://raw.githubusercontent.com/CodingGardenCommunity/contributors/mock-user-data/contributors.json')
+    fetch('https://api-dev.coding.garden/contributors')
       .then(res => res.json())
       .then((data) => {
-        sortData(data);
+        // sortData(data);
         this.setState({
-          contributorsData: data,
+          contributorsData: data.data,
           dataLoaded: true
         });
       })
@@ -76,38 +76,44 @@ export default class ListContainer extends Component {
         <FlatList
           style={styles.flex}
           data={this.state.contributorsData}
-          renderItem={({ item, index }) => {
+          renderItem={({ item }, index) => {
             const {
               name,
               github,
-              teamIds,
               image,
               active,
-            } = item;
+            } = item.attributes;
+
+            const devTeams = item.relationships.contributionArea.data;
+            console.log(devTeams);
+
 
             return (
             <ListItem
               style={[
-                // sets every other listItem as a darker grey
-                styles.listItem, !(index % 2)
+                styles.listItem,
+                // sets every other listItem as a darker grey based on odd/even of index
+                !(index % 2)
                   ? { backgroundColor: '' }
                   : { backgroundColor: '#cccccc' }]}
               avatar>
               <Left>
                 <Thumbnail
                   source={{ uri: image || null }}
-                  style={[styles.thumbnail, active ? {} : styles.inactive, { paddingVertical: 0 }]}
+                  style={[styles.thumbnail, active
+                    ? { }
+                    : styles.inactiveAvatar, { paddingVertical: 0 }]}
                 />
               </Left>
               <Body style={{ paddingVertical: 0 }}>
-                <ContributorHeader name={name} github={ github } />
-                <ContributorDevTeam teamIds={teamIds} />
+                <ContributorHeader name={ name } github={ github } />
+                <ContributorDevTeams devTeams={ devTeams } />
               </Body>
             </ListItem>
             );
           }
         }
-          keyExtractor={item => item.name + this.index}
+          keyExtractor={item => item.attributes.name}
           ItemSeparatorComponent={this.renderSeparator}
         />
       );

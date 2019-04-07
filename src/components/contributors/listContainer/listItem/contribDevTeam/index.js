@@ -6,10 +6,10 @@ import {
 } from 'react-native';
 
 import DevTeamHeader from './devTeamHeader';
-import DevTeamList from './devTeamList';
+import DevTeamList from './devTeamsList';
 
 const styles = StyleSheet.create({
-  devTeamOuter: {
+  devTeamsOuter: {
     height: 70,
   },
 
@@ -17,15 +17,15 @@ const styles = StyleSheet.create({
 });
 
 export default function contributorDevTeams(props) {
-  const { teamIds } = props;
+  const { devTeams } = props;
   return (
-    <View style={styles.devTeamOuter}>
+    <View style={ styles.devTeamsOuter }>
       <DevTeamHeader />
-      <DevTeamList teamIds={teamIds} />
+      <DevTeamList devTeams={ devTeams } />
     </View>
   );
 }
 
 contributorDevTeams.propTypes = {
-  teamIds: propTypes.array,
+  devTeams: propTypes.array,
 };
