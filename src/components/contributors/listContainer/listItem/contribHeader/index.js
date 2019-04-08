@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 import ContributorName from './contribName';
 import UserProfileIcon from './userProfileIcon';
@@ -28,6 +28,6 @@ export default function contributorHeader(props) {
 }
 
 contributorHeader.propTypes = {
-  name: PropTypes.string,
-  github: PropTypes.string,
+  name: propTypes.string,
+  github: propTypes.string,
 };

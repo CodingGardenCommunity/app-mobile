@@ -6,36 +6,14 @@ import {
   Text,
   FlatList
 } from 'react-native';
-import {
-  ListItem,
-  Left,
-  Body,
-  Thumbnail
-} from 'native-base';
 
-import ContributorHeader from './listItem/contribHeader';
-import ContributorDevTeams from './listItem/contribDevTeam';
-
+import ContributorListItem from './listItem';
 
 const styles = StyleSheet.create({
   flex: {
     display: 'flex',
     flex: 1,
   },
-  listItem: {
-    height: 130,
-    marginLeft: 0,
-    paddingVertical: 0,
-    paddingHorizontal: 10,
-  },
-  thumbnail: {
-    width: 100,
-    height: 100,
-    borderRadius: 50
-  },
-  inactiveAvatar: {
-    opacity: 0.4,
-  }
 });
 
 // const sortData = (dataArray) => {
@@ -52,6 +30,7 @@ export default class ListContainer extends Component {
     this.state = {
       contributorsData: [],
       dataLoaded: false,
+      isSelected: true
     };
   }
 
@@ -77,39 +56,14 @@ export default class ListContainer extends Component {
           style={styles.flex}
           data={this.state.contributorsData}
           renderItem={({ item }, index) => {
-            const {
-              name,
-              github,
-              image,
-              active,
-            } = item.attributes;
-
+            const contributorData = item.attributes;
             const devTeams = item.relationships.contributionArea.data;
-            console.log(devTeams);
-
-
             return (
-            <ListItem
-              style={[
-                styles.listItem,
-                // sets every other listItem as a darker grey based on odd/even of index
-                !(index % 2)
-                  ? { backgroundColor: '' }
-                  : { backgroundColor: '#cccccc' }]}
-              avatar>
-              <Left>
-                <Thumbnail
-                  source={{ uri: image || null }}
-                  style={[styles.thumbnail, active
-                    ? { }
-                    : styles.inactiveAvatar, { paddingVertical: 0 }]}
-                />
-              </Left>
-              <Body style={{ paddingVertical: 0 }}>
-                <ContributorHeader name={ name } github={ github } />
-                <ContributorDevTeams devTeams={ devTeams } />
-              </Body>
-            </ListItem>
+              <ContributorListItem
+                contributorData={contributorData}
+                devTeams={devTeams}
+                index={index}
+              />
             );
           }
         }
