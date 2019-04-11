@@ -50,9 +50,11 @@ export default class ContributorListItem extends Component {
     this.state = {
       isExpanded: false
     };
+
   }
 
   toggleExpanded = () => {
+    console.log('press triggered');
     this.setState(prevState => ({
       isExpanded: !prevState.isExpanded,
     }));

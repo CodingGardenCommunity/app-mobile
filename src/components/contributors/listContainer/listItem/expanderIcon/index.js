@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
 });
 
 export default function expanderIcon(props) {
-  const { isExpanded } = props;
+  const { isExpanded, toggleExpanded } = props;
 
   return (
-    <View style={ styles.expanderOuter }>
+    <View style={ styles.expanderOuter } onPress={ toggleExpanded }>
       {
         isExpanded
           ? <Icon
@@ -39,5 +39,6 @@ export default function expanderIcon(props) {
 }
 
 expanderIcon.propTypes = {
+  toggleExpanded: propTypes.func,
   isExpanded: propTypes.bool
 };
