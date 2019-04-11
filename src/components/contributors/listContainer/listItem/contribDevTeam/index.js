@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import DevTeamHeader from './devTeamHeader';
-import DevTeamList from './devTeamsList';
+import DevTeamsList from './devTeamsList';
 
 const styles = StyleSheet.create({
   devTeamsOuter: {
@@ -21,7 +21,7 @@ export default function contributorDevTeams(props) {
   return (
     <View style={ styles.devTeamsOuter }>
       <DevTeamHeader />
-      <DevTeamList devTeams={ devTeams } />
+      <DevTeamsList devTeams={ devTeams } />
     </View>
   );
 }

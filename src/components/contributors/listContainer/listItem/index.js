@@ -10,7 +10,11 @@ import {
 
 
 import ContributorHeader from './contribHeader';
-import ContributorDevTeams from './contribDevTeam';
+
+import DevTeamHeader from './contribDevTeam/devTeamHeader';
+import DevTeamsList from './contribDevTeam/devTeamsList';
+
+import ExpanderIcon from './expanderIcon';
 
 
 const styles = StyleSheet.create({
@@ -23,6 +27,11 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     paddingVertical: 0,
     paddingHorizontal: 10,
+  },
+  listItemBodyContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   thumbnail: {
     width: 100,
@@ -39,13 +48,13 @@ export default class ContributorListItem extends Component {
     super();
     this.props = props;
     this.state = {
-      isExtended: false
+      isExpanded: false
     };
   }
 
-  toggleExtended = () => {
+  toggleExpanded = () => {
     this.setState(prevState => ({
-      isExtended: !prevState.isExtended,
+      isExpanded: !prevState.isExpanded,
     }));
   }
 
@@ -59,18 +68,17 @@ export default class ContributorListItem extends Component {
       countryCode,
       active
     } = this.props.contributorData;
-
     const { devTeams } = this.props;
+    const { isExpanded } = this.state;
 
     return (
       <>
       <ListItem
-        onPress={this.toggleExtended}
         style={[
           styles.listItem,
           // sets every other listItem as a darker grey based on odd/even of index
           !(index % 2)
-            ? { backgroundColor: '' }
+            ? { backgroundColor: '#eeeeee' }
             : { backgroundColor: '#cccccc' }]}
         avatar>
         <Left>
@@ -83,12 +91,16 @@ export default class ContributorListItem extends Component {
         </Left>
         <Body style={{ paddingVertical: 0 }}>
           <ContributorHeader name={ name } github={ github } />
-          <ContributorDevTeams devTeams={ devTeams } />
+            <DevTeamHeader />
+            <View style={ styles.listItemBodyContent }>
+              <DevTeamsList devTeams={ devTeams } />
+              <ExpanderIcon isExpanded={ isExpanded } onPress={this.toggleExpanded}/>
+            </View>
         </Body>
       </ListItem>
-      <View style={{ flex: 1, backgroundColor: '#212121' }}>
+      <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
         {
-          this.state.isExtended
+          this.state.isExpanded
             ? <View style={{ flex: 1 }}><Text>{ countryCode }</Text><Text>{ joined }</Text></View>
             : null
         }

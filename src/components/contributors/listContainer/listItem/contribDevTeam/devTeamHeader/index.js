@@ -4,7 +4,8 @@ import { StyleSheet, Text } from 'react-native';
 const styles = StyleSheet.create({
   devTeamHeader: {
     borderBottomWidth: 1,
-    borderColor: '#121212'
+    borderColor: '#121212',
+    width: '100%'
   },
 });
 

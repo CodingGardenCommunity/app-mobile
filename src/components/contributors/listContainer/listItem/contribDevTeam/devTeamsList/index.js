@@ -2,14 +2,15 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import propTypes from 'prop-types';
 
-import DevTeamIcon from '../devTeamIcon';
+import DevTeamIcon from './devTeamIcon';
 
 const styles = StyleSheet.create({
   devTeamsList: {
     display: 'flex',
     flexDirection: 'row',
     flex: 1,
-    paddingVertical: 5
+    paddingVertical: 5,
+    backgroundColor: '#cccccc'
   },
 });
 
@@ -21,7 +22,7 @@ export default function devTeamsList(props) {
     {
       devTeams.map((team, index) => <DevTeamIcon key={index} team={team} />)
     }
-  </View>
+    </View>
   );
 }
 

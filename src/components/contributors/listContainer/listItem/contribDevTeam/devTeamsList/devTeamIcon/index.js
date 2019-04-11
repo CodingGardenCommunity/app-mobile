@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
   teamIcon: {
     width: 30,
     height: 40,
-    marginRight: 10,
     borderRadius: 20,
     borderColor: '#212121',
     borderWidth: 1
