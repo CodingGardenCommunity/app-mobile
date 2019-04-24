@@ -6,39 +6,23 @@ import {
   Text,
   FlatList
 } from 'react-native';
-import {
-  ListItem,
-  Left,
-  Body,
-  Thumbnail
-} from 'native-base';
 
-const style = StyleSheet.create({
+import ContributorListItem from './listItem';
+
+const styles = StyleSheet.create({
   flex: {
     display: 'flex',
     flex: 1,
   },
-  listItem: {
-    height: 100,
-    marginLeft: 0,
-    paddingLeft: '5%',
-    paddingBottom: 10
-  },
-  name: {
-    fontSize: 20
-  },
-  teamIcon: {
-    width: 40,
-    height: 40,
-    marginRight: 10,
-    borderRadius: 20,
-    borderColor: '#212121',
-    borderWidth: 1
-  },
-  active: {
-    backgroundColor: '#056056'
-  }
 });
+
+// const sortData = (dataArray) => {
+//   // sorts the array by join date
+//   dataArray.sort((firstItem, secondItem) => (firstItem.joined < secondItem.joined ? -1 : 1))
+//     // then sorts array by active status
+//     .sort((firstItem, secondItem) => (firstItem.active > secondItem.active ? -1 : 1));
+//   return dataArray;
+// };
 
 export default class ListContainer extends Component {
   constructor() {
@@ -46,69 +30,45 @@ export default class ListContainer extends Component {
     this.state = {
       contributorsData: [],
       dataLoaded: false,
+      isSelected: true
     };
   }
 
   componentDidMount() {
-    fetch('https://app-backend-iel278lgr.now.sh/contributors')
+    fetch('https://api-dev.coding.garden/contributors')
       .then(res => res.json())
       .then((data) => {
+        // sortData(data);
         this.setState({
-          contributorsData: data,
+          contributorsData: data.data,
           dataLoaded: true
-        }, () => {
-          console.log('data fetched');
-          console.log(this.state.githubData);
         });
       })
       .catch(error => console.log(error));
   }
 
+  renderSeparator = () => <View style={{ height: 1, backgroundColor: '#121212', }}></View>;
+
   render() {
     if (this.state.dataLoaded) {
       return (
         <FlatList
-          style={style.flex}
+          style={styles.flex}
           data={this.state.contributorsData}
-          renderItem={({ item }) => {
-            console.log(item);
-            const {
-              name,
-              teamIds,
-              image,
-              active
-            } = item;
-
+          renderItem={({ item }, index) => {
+            const contributorData = item.attributes;
+            const devTeams = item.relationships.contributionArea.data;
             return (
-            <ListItem style={[style.listItem, active ? style.active : style.inactive]} avatar>
-              <Left>
-                <Thumbnail
-                  source={{ uri: image }}
-                  style={{ width: 80, height: 80, borderRadius: 40 }}
-                />
-              </Left>
-              <Body>
-                <Text style={style.name}>
-                  {name}
-                </Text>
-                <View style={{ backgroundColor: '#ccc', height: 60 }}>
-                  <Text>Development Teams</Text>
-                  <View style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
-                    {
-                      teamIds.map((team, index) => <View
-                      key={index}
-                      style={[style.teamIcon, { alignItems: 'center', justifyContent: 'center' }]}>
-                        <Text>{ team }</Text>
-                      </View>)
-                    }
-                  </View>
-                </View>
-              </Body>
-            </ListItem>
+              <ContributorListItem
+                contributorData={contributorData}
+                devTeams={devTeams}
+                index={index}
+              />
             );
           }
         }
-          keyExtractor={item => item.name}
+          keyExtractor={item => item.attributes.name}
+          ItemSeparatorComponent={this.renderSeparator}
         />
       );
     }

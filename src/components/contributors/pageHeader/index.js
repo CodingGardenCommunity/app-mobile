@@ -5,15 +5,14 @@ import { View, Text } from 'native-base';
 
 const styles = StyleSheet.create({
   headerOuter: {
-    height: 70,
+    height: 80,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     borderBottomWidth: 1,
-    marginBottom: 5,
   },
   headerText: {
-    fontSize: 24
+    fontSize: 28
   }
 });
 
