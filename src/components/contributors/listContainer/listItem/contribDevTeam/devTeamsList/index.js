@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   devTeamsList: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-evenly',
     flex: 1,
     paddingVertical: 5,
     backgroundColor: '#cccccc'
@@ -20,7 +21,7 @@ export default function devTeamsList(props) {
   return (
     <View style={styles.devTeamsList}>
     {
-      devTeams.map((team, index) => <PetalIcon key={index} team={team} />)
+      devTeams.map((team, index) => <PetalIcon key={index} team={team}/>)
     }
     </View>
   );

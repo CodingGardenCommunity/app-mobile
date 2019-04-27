@@ -4,14 +4,14 @@ import propTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   petalIcon: {
-    width: 10,
-    height: 20,
+    display: 'flex',
+    width: 20,
+    height: 40,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 50,
     borderBottomLeftRadius: 0,
-    backgroundColor: '#1A675C',
-    padding: 5
+    backgroundColor: '#F7AB00',
   }
 });
 
@@ -20,7 +20,7 @@ export default function petalIcon(props) {
 
   return (
     <View
-      style={[styles.petalIcon, { alignItems: 'center', justifyContent: 'center' }]}>
+      style={[styles.petalIcon, { alignItems: 'center', justifyContent: 'center'}]}>
         <Text>{ id }</Text>
     </View>
   );
