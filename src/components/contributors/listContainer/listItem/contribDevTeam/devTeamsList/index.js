@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import propTypes from 'prop-types';
 
-import DevTeamIcon from './devTeamIcon';
+import PetalIcon from './petal';
 
 const styles = StyleSheet.create({
   devTeamsList: {
@@ -20,7 +20,7 @@ export default function devTeamsList(props) {
   return (
     <View style={styles.devTeamsList}>
     {
-      devTeams.map((team, index) => <DevTeamIcon key={index} team={team} />)
+      devTeams.map((team, index) => <PetalIcon key={index} team={team} />)
     }
     </View>
   );
