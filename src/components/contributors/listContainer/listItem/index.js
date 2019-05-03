@@ -50,11 +50,9 @@ export default class ContributorListItem extends Component {
     this.state = {
       isExpanded: false
     };
-
   }
 
   toggleExpanded = () => {
-    console.log('press triggered');
     this.setState(prevState => ({
       isExpanded: !prevState.isExpanded,
     }));
@@ -96,7 +94,7 @@ export default class ContributorListItem extends Component {
             <DevTeamHeader />
             <View style={ styles.listItemBodyContent }>
               <DevTeamsList devTeams={ devTeams } />
-              <ExpanderIcon isExpanded={ isExpanded } onPress={this.toggleExpanded}/>
+              <ExpanderIcon isExpanded={ isExpanded } toggleExpanded={ this.toggleExpanded }/>
             </View>
         </Body>
       </ListItem>

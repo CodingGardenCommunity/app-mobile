@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'native-base';
 import propTypes from 'prop-types';
 
@@ -19,22 +19,22 @@ const styles = StyleSheet.create({
 });
 
 export default function expanderIcon(props) {
-  const { isExpanded, toggleExpanded } = props;
+  const { isExpanded, toggleExpanded, } = props;
 
   return (
-    <View style={ styles.expanderOuter } onPress={ toggleExpanded }>
+    <TouchableOpacity style={ styles.expanderOuter } onPress={ toggleExpanded }>
       {
         isExpanded
           ? <Icon
               style={ styles.expanderIcon }
-              name="arrow-down"
+              name="arrow-up"
             />
           : <Icon
               style={ styles.expanderIcon }
-              name="arrow-up"
+              name="arrow-down"
             />
       }
-    </View>
+    </TouchableOpacity>
   );
 }
 
