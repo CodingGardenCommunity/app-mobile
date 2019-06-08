@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     paddingVertical: 5,
-    backgroundColor: '#cccccc'
+    backgroundColor: '#cccccc',
   },
 });
 

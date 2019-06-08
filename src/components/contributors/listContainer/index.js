@@ -39,8 +39,9 @@ export default class ListContainer extends Component {
       .then(res => res.json())
       .then((data) => {
         // sortData(data);
+        console.log(data);
         this.setState({
-          contributorsData: data.data,
+          contributorsData: data,
           dataLoaded: true
         });
       })
@@ -57,7 +58,7 @@ export default class ListContainer extends Component {
           data={this.state.contributorsData}
           renderItem={({ item }, index) => {
             const contributorData = item.attributes;
-            const devTeams = item.relationships.contributionArea.data;
+            const devTeams = item.attributes.teamIds;
             return (
               <ContributorListItem
                 contributorData={contributorData}
