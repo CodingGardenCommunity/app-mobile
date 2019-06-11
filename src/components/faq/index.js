@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function FAQ() {
-  return (
-    <View style={styles.content}>
-      <Text>FAQ Page</Text>
-    </View>
-  );
-}
+const FAQ = () => (
+  <View style={styles.content}>
+    <Text>FAQ Page</Text>
+  </View>
+);
+
+export default FAQ;

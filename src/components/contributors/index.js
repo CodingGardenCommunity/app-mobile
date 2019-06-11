@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   }
 });
 
+
 export default function ContributorsView() {
   return (
     <View style={styles.content}>
