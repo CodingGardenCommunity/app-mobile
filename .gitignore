@@ -124,3 +124,5 @@ buck-out/
 *.jsbundle
 
 package-lock.json
+
+colors.txt
